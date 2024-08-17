@@ -12,10 +12,14 @@ public class StampSpawner : MonoBehaviour
     private int currentStampCount = 0;
     
     private GameObject currentStamp;
+    private bool isSpaceKeyPressed = false;
+    private StampChecker stampChecker;
+
 
     void Start()
     {
         spawnInterval = initialSpawnInterval;
+        stampChecker = FindObjectOfType<StampChecker>();
         StartCoroutine(SpawnStamps());
     }
 
@@ -25,23 +29,29 @@ public class StampSpawner : MonoBehaviour
         {
             SpawnStamp();
             currentStampCount++;
+
             yield return new WaitForSeconds(spawnInterval);
-            //spawnInterval *= 0.95f;  // 徐々に速くする
+            if (!isSpaceKeyPressed)
+            {
+                stampChecker.PassStamp(currentStamp);
+            }
+
+            // 次のはんこ生成前に現在のはんこを削除
+            Destroy(currentStamp);
+
+            // フラグリセット
+            isSpaceKeyPressed = false;
+
+            // 生成間隔を短くする
+            //spawnInterval *= 0.95f;
         }
     }
 
     void SpawnStamp()
     {
-        if (currentStamp != null)
-        {
-            Destroy(currentStamp);
-        }
-
         int randomIndex = Random.Range(0, stampPrefabs.Length);
-        currentStamp = Instantiate(stampPrefabs[randomIndex], spawnPoint.position, Quaternion.identity, spawnPoint);
-        Debug.Log("スタンプを生成しました！");
+        currentStamp = Instantiate(stampPrefabs[randomIndex], spawnPoint.position, Quaternion.identity);
 
-        StampChecker stampChecker = FindObjectOfType<StampChecker>();
         if (stampChecker != null)
         {
             stampChecker.SetCurrentStamp(currentStamp);
@@ -50,5 +60,10 @@ public class StampSpawner : MonoBehaviour
         {
             Debug.LogError("StampChecker が見つかりませんでした！");
         }
+    }
+
+    public void OnSpaceKeyPressed()
+    {
+        isSpaceKeyPressed = true;
     }
 }
