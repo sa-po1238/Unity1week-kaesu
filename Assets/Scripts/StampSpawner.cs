@@ -6,21 +6,49 @@ public class StampSpawner : MonoBehaviour
 {
     public GameObject[] stampPrefabs;  // スタンプのプレハブ配列
     public Transform spawnPoint;  // スタンプの生成位置
-    public float initialSpawnInterval = 1.0f;  // 最初の生成間隔
+    public float initialSpawnInterval = 0.5f;  // 最初の生成間隔
     private float spawnInterval;
-    private int totalStamps = 30;
+    private int totalStamps = 10;
+    private int correctStampCount = 5;
     private int currentStampCount = 0;
-    
-    private GameObject currentStamp;
+
+    private List<GameObject> stampQueue = new List<GameObject>();
+    private GameObject currentStamp;  // 現在表示されているスタンプ
     private bool isSpaceKeyPressed = false;
     private StampChecker stampChecker;
-
 
     void Start()
     {
         spawnInterval = initialSpawnInterval;
         stampChecker = FindObjectOfType<StampChecker>();
+        PrepareStampQueue();
         StartCoroutine(SpawnStamps());
+    }
+
+    void PrepareStampQueue()
+    {
+        // ｢北山｣をcorrectStampCount個生成
+        for (int i = 0; i < correctStampCount; i++)
+        {
+            // ｢北山｣は配列の一個目にしておく
+            stampQueue.Add(stampPrefabs[0]);
+        }
+
+        // それ以外のスタンプをランダムに生成
+        for (int i = 0; i < totalStamps - correctStampCount; i++)
+        {
+            int randomIndex = Random.Range(1, stampPrefabs.Length);
+            stampQueue.Add(stampPrefabs[randomIndex]);
+        }
+
+        // リストをランダム並べ替え
+        for (int i = 0; i < stampQueue.Count; i++)
+        {
+            GameObject temp = stampQueue[i];
+            int randomIndex = Random.Range(i, stampQueue.Count);
+            stampQueue[i] = stampQueue[randomIndex];
+            stampQueue[randomIndex] = temp;
+        }
     }
 
     IEnumerator SpawnStamps()
@@ -30,36 +58,33 @@ public class StampSpawner : MonoBehaviour
             SpawnStamp();
             currentStampCount++;
 
+            // スペースキーが押されていないかを確認
             yield return new WaitForSeconds(spawnInterval);
-            if (!isSpaceKeyPressed)
+            if (!isSpaceKeyPressed && currentStamp != null)
             {
                 stampChecker.PassStamp(currentStamp);
             }
 
-            // 次のはんこ生成前に現在のはんこを削除
-            Destroy(currentStamp);
+            // 次のスタンプ生成前に現在のスタンプを破壊
+            if (currentStamp != null)
+            {
+                Destroy(currentStamp);
+            }
 
-            // フラグリセット
+            // 次のスタンプのためにスペースキーのフラグをリセット
             isSpaceKeyPressed = false;
 
-            // 生成間隔を短くする
-            //spawnInterval *= 0.95f;
+            //spawnInterval *= 0.95f;  // 徐々に速くする
         }
     }
 
     void SpawnStamp()
     {
-        int randomIndex = Random.Range(0, stampPrefabs.Length);
-        currentStamp = Instantiate(stampPrefabs[randomIndex], spawnPoint.position, Quaternion.identity);
+        currentStamp = Instantiate(stampQueue[currentStampCount], spawnPoint.position, Quaternion.identity, spawnPoint);
 
-        if (stampChecker != null)
-        {
-            stampChecker.SetCurrentStamp(currentStamp);
-        }
-        else
-        {
-            Debug.LogError("StampChecker が見つかりませんでした！");
-        }
+        // StampChecker に現在のスタンプを設定
+        stampChecker.SetCurrentStamp(currentStamp);
+        Debug.Log("スタンプを生成しました: " + currentStamp.name);
     }
 
     public void OnSpaceKeyPressed()

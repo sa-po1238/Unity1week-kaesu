@@ -494,8 +494,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stampPrefabs:
-  - {fileID: 4743245785615635344, guid: 6fbf75d657861c2498e94f28e1f84f71, type: 3}
   - {fileID: 8851838865334040656, guid: 3a9d1f1a743ae51458d06f3f83358868, type: 3}
+  - {fileID: 4743245785615635344, guid: 6fbf75d657861c2498e94f28e1f84f71, type: 3}
   - {fileID: 8961575237214575240, guid: 1c30b9ee6cd159443a896589226d1d91, type: 3}
   spawnPoint: {fileID: 591715906}
   initialSpawnInterval: 1
