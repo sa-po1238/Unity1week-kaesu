@@ -30,13 +30,13 @@ public class StampChecker : MonoBehaviour
             {
                 // 正しいスタンプでスペースキーが押された場合
                 Debug.Log("正解: 正しいスタンプでスペースキーが押されました！");
-                Destroy(currentStamp);
             }
             else
             {
                 // 間違ったスタンプでスペースキーが押された場合
                 Debug.Log("ミス: 間違ったスタンプでスペースキーが押されました！");
             }
+            Destroy(currentStamp);
         }
     }
 

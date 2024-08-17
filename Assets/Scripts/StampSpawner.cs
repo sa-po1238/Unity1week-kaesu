@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class StampSpawner : MonoBehaviour
 {
@@ -11,15 +12,19 @@ public class StampSpawner : MonoBehaviour
     private int totalStamps = 10;
     private int correctStampCount = 5;
     private int currentStampCount = 0;
+    private int remainStampCount = 0;
 
     private List<GameObject> stampQueue = new List<GameObject>();
     private GameObject currentStamp;  // 現在表示されているスタンプ
     private bool isSpaceKeyPressed = false;
     private StampChecker stampChecker;
 
+    [SerializeField] TextMeshProUGUI remainStampCountText;
+
     void Start()
     {
         spawnInterval = initialSpawnInterval;
+        remainStampCount = totalStamps;
         stampChecker = FindObjectOfType<StampChecker>();
         PrepareStampQueue();
         StartCoroutine(SpawnStamps());
@@ -57,6 +62,10 @@ public class StampSpawner : MonoBehaviour
         {
             SpawnStamp();
             currentStampCount++;
+            remainStampCount--;
+
+            // 残りスタンプ数を更新
+            remainStampCountText.text = remainStampCount.ToString();
 
             // スペースキーが押されていないかを確認
             yield return new WaitForSeconds(spawnInterval);
