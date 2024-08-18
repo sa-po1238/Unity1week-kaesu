@@ -6,7 +6,7 @@ public class StampSpawner : MonoBehaviour
 {
     public GameObject[] stampPrefabs;  // スタンプのプレハブ配列
     public Transform spawnPoint;  // スタンプの生成位置
-    public float initialSpawnInterval = 0.5f;  // 最初の生成間隔
+    public float initialSpawnInterval = 0.32f;  // 最初の生成間隔
     private float spawnInterval;
     private int totalStamps = 10;
     private int correctStampCount = 5;
@@ -19,6 +19,8 @@ public class StampSpawner : MonoBehaviour
     private bool isSpaceKeyPressed = false;
     private StampChecker stampChecker;
     private GameManager gameManager;
+
+    private float tempo = 0.2f;
 
     void Start()
     {
@@ -33,6 +35,7 @@ public class StampSpawner : MonoBehaviour
         StartCoroutine(SpawnStamps());
     }
 
+    // スタンプの生成順番を決定
     void PrepareStampQueue()
     {
         // ｢北山｣をcorrectStampCount個生成
@@ -83,14 +86,21 @@ public class StampSpawner : MonoBehaviour
                 Destroy(currentStamp);
             }
 
+            if (currentStampCount == 5)
+            {
+                // テンポ調整
+                AudioManager.instance_AudioManager.TempoAdjustBGM(0.2f);
+                spawnInterval *= 0.8f;
+            }
+
             // 次のスタンプのためにスペースキーのフラグをリセット
             isSpaceKeyPressed = false;
-
-            //spawnInterval *= 0.95f;  // 徐々に速くする
         }
 
         // スタンプ生成が終了したら結果を表示
         gameManager.ShowResult(stampChecker.score);
+        AudioManager.instance_AudioManager.StopBGM();
+        AudioManager.instance_AudioManager.PlaySE(3);
     }
 
     void SpawnStamp()
@@ -100,6 +110,8 @@ public class StampSpawner : MonoBehaviour
         // StampChecker に現在のスタンプを設定
         stampChecker.SetCurrentStamp(currentStamp);
         Debug.Log("スタンプを生成しました: " + currentStamp.name);
+
+        AudioManager.instance_AudioManager.PlaySE(2);
     }
 
     public void OnSpaceKeyPressed()

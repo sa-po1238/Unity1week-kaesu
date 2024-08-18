@@ -21,6 +21,14 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: cb88baa277ba1454a8e31d6a803bee29, type: 3}
     volume: 1
     memo: 
+  - id: 2
+    clip: {fileID: 8300000, guid: d24f0cb7a34d1b8439c3f78aa1ade92d, type: 3}
+    volume: 1
+    memo: 
+  - id: 3
+    clip: {fileID: 8300000, guid: 3ee9ba03036f4444ea4107540e1c4a0b, type: 3}
+    volume: 1
+    memo: 
   BGM_Data:
   - id: 0
     clip: {fileID: 8300000, guid: 8b29afc31abb738419054aa1d372c0e8, type: 3}

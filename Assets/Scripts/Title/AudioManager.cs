@@ -112,4 +112,9 @@ public class AudioManager : MonoBehaviour
     {
         this.BGMSource.UnPause();
     }
+
+    public void TempoAdjustBGM(float tempo)
+    {
+        this.BGMSource.pitch += tempo;
+    }
 }
