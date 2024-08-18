@@ -139,6 +139,7 @@ public class StampSpawner : MonoBehaviour
             if (currentStampCount == 20)
             {
                 speedUpText.SetActive(true);
+                AudioManager.instance_AudioManager.PlaySE(4);
 
                 // テンポ調整
                 AudioManager.instance_AudioManager.TempoAdjustBGM(1.25f);
@@ -154,6 +155,7 @@ public class StampSpawner : MonoBehaviour
             if (currentStampCount == 30)
             {
                 speedUpText.SetActive(true);
+                AudioManager.instance_AudioManager.PlaySE(4);
 
                 // テンポ調整
                 AudioManager.instance_AudioManager.TempoAdjustBGM(1.5f);
