@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        AudioManager.instance_AudioManager.PlayBGM(0);
+        AudioManager.instance_AudioManager.PlayBGM(SelectStage.stageNumber);
     }
 
     // Update is called once per frame

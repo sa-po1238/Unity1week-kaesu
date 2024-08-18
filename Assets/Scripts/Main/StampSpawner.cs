@@ -6,7 +6,7 @@ public class StampSpawner : MonoBehaviour
 {
     public GameObject[] stampPrefabs;  // スタンプのプレハブ配列
     public Transform spawnPoint;  // スタンプの生成位置
-    public float initialSpawnInterval = 0.32f;  // 最初の生成間隔
+    private float initialSpawnInterval = 1.0f;  // 最初の生成間隔
     private float spawnInterval;
     private int totalStamps = 10;
     private int correctStampCount = 5;
@@ -24,6 +24,19 @@ public class StampSpawner : MonoBehaviour
 
     void Start()
     {
+        if (SelectStage.stageNumber == 0)
+        {
+            initialSpawnInterval = 1.0f;
+        }
+        else if (SelectStage.stageNumber == 1)
+        {
+            initialSpawnInterval = 0.88f;
+        }
+        else if (SelectStage.stageNumber == 2)
+        {
+            initialSpawnInterval = 0.80f;
+        }
+        Debug.Log(initialSpawnInterval.ToString());
         spawnInterval = initialSpawnInterval;
         remainStampCount = totalStamps;
 
@@ -90,7 +103,19 @@ public class StampSpawner : MonoBehaviour
             {
                 // テンポ調整
                 AudioManager.instance_AudioManager.TempoAdjustBGM(0.2f);
-                spawnInterval *= 0.8f;
+                
+                if (SelectStage.stageNumber == 0)
+                {
+                    spawnInterval = 0.5f;
+                }
+                else if (SelectStage.stageNumber == 1)
+                {
+                    spawnInterval = 0.44f;
+                }
+                else if (SelectStage.stageNumber == 2)
+                {
+                    spawnInterval = 0.4f;
+                }
             }
 
             // 次のスタンプのためにスペースキーのフラグをリセット
