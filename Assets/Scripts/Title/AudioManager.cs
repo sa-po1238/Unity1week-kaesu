@@ -115,6 +115,6 @@ public class AudioManager : MonoBehaviour
 
     public void TempoAdjustBGM(float tempo)
     {
-        this.BGMSource.pitch += tempo;
+        this.BGMSource.pitch = tempo;
     }
 }

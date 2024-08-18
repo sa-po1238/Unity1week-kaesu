@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class StampSpawner : MonoBehaviour
 {
@@ -8,8 +10,8 @@ public class StampSpawner : MonoBehaviour
     public Transform spawnPoint;  // スタンプの生成位置
     private float initialSpawnInterval = 1.0f;  // 最初の生成間隔
     private float spawnInterval;
-    private int totalStamps = 30;
-    private int correctStampCount = 20;
+    private int totalStamps = 45;
+    private int correctStampCount = 30;
     private int currentStampCount = 0;
     private int remainStampCount = 0;
     private int score = 0;
@@ -19,6 +21,8 @@ public class StampSpawner : MonoBehaviour
     private bool isSpaceKeyPressed = false;
     private StampChecker stampChecker;
     private GameManager gameManager;
+
+    [SerializeField] GameObject speedUpText;
 
     private float tempo = 0.2f;
 
@@ -77,18 +81,28 @@ public class StampSpawner : MonoBehaviour
         // ｢北山｣をcorrectStampCount個生成
         for (int i = 0; i < correctStampCount; i++)
         {
-            // ｢北山｣は配列の一個目にしておく
-            stampQueue.Add(stampPrefabs[0]);
+            stampQueue.Add(stampPrefabs[0]);  // ｢北山｣は配列の最初にあると仮定
         }
 
-        // それ以外のスタンプをランダムに生成
-        for (int i = 0; i < totalStamps - correctStampCount; i++)
+        // ｢比山｣を8個追加（配列の1番目にあると仮定）
+        for (int i = 0; i < 8; i++)
         {
-            int randomIndex = Random.Range(1, stampPrefabs.Length);
-            stampQueue.Add(stampPrefabs[randomIndex]);
+            stampQueue.Add(stampPrefabs[1]);
         }
 
-        // リストをランダム並べ替え
+        // ｢北出｣を4個追加（配列の2番目にあると仮定）
+        for (int i = 0; i < 4; i++)
+        {
+            stampQueue.Add(stampPrefabs[2]);
+        }
+
+        // 残りの3つのスタンプを1つずつ追加（配列の3番目以降にあると仮定）
+        for (int i = 3; i < stampPrefabs.Length; i++)
+        {
+            stampQueue.Add(stampPrefabs[i]);
+        }
+
+        // リストをランダムに並べ替え
         for (int i = 0; i < stampQueue.Count; i++)
         {
             GameObject temp = stampQueue[i];
@@ -124,21 +138,32 @@ public class StampSpawner : MonoBehaviour
 
             if (currentStampCount == 20)
             {
+                speedUpText.SetActive(true);
+
                 // テンポ調整
-                AudioManager.instance_AudioManager.TempoAdjustBGM(1.0f);
+                AudioManager.instance_AudioManager.TempoAdjustBGM(1.25f);
                 
-                if (SelectStage.stageNumber == 0)
-                {
-                    spawnInterval = 0.5f;
-                }
-                else if (SelectStage.stageNumber == 1)
-                {
-                    spawnInterval = 0.44f;
-                }
-                else if (SelectStage.stageNumber == 2)
-                {
-                    spawnInterval = 0.4f;
-                }
+                spawnInterval *= 0.8f;
+            }
+
+            if (currentStampCount == 22)
+            {
+                speedUpText.SetActive(false);
+            }
+
+            if (currentStampCount == 30)
+            {
+                speedUpText.SetActive(true);
+
+                // テンポ調整
+                AudioManager.instance_AudioManager.TempoAdjustBGM(1.5f);
+                
+                spawnInterval *= 0.8f;
+            }
+
+            if (currentStampCount == 32)
+            {
+                speedUpText.SetActive(false);
             }
 
             // 次のスタンプのためにスペースキーのフラグをリセット

@@ -32,13 +32,13 @@ MonoBehaviour:
   BGM_Data:
   - id: 0
     clip: {fileID: 8300000, guid: 8b29afc31abb738419054aa1d372c0e8, type: 3}
-    volume: 1
+    volume: 0.7
     memo: 
   - id: 1
     clip: {fileID: 8300000, guid: c37a5388ae9871140bc7639627e447e1, type: 3}
-    volume: 1
+    volume: 0.7
     memo: 
   - id: 2
     clip: {fileID: 8300000, guid: 58e664f033e643843b7f67ba06ab13ac, type: 3}
-    volume: 1
+    volume: 0.7
     memo: 

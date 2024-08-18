@@ -11,6 +11,7 @@ public class StartButton : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        AudioManager.instance_AudioManager.TempoAdjustBGM(1.0f);
         AudioManager.instance_AudioManager.PlayBGM(0);
     }
 

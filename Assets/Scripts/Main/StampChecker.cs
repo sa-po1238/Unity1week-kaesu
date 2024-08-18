@@ -11,19 +11,20 @@ public class StampChecker : MonoBehaviour
     public int score = 0;
 
     private StampSpawner stampSpawner;
+    private MenuButton menuButton;
 
     void Start()
     {
         stampSpawner = FindObjectOfType<StampSpawner>();
+        menuButton = FindObjectOfType<MenuButton>();
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        // メニューが開いていない場合のみスペースキーの入力を受け付ける
+        if (!menuButton.IsMenuPanelActive && Input.GetKeyDown(KeyCode.Space))
         {
             CheckStamp();
-            stampSpawner.OnSpaceKeyPressed();
-            AudioManager.instance_AudioManager.PlaySE(1);
         }
     }
 
@@ -54,6 +55,9 @@ public class StampChecker : MonoBehaviour
             }
             gettedStamps.Add(currentStamp);
             Destroy(currentStamp);
+            
+            stampSpawner.OnSpaceKeyPressed();
+            AudioManager.instance_AudioManager.PlaySE(1);
         }
     }
 
@@ -63,7 +67,6 @@ public class StampChecker : MonoBehaviour
         {
             if (stamp.name != correctStampName)
             {
-                
                 Debug.Log("正解: 間違ったスタンプが見逃されました！");
             }
             else
