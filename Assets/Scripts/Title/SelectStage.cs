@@ -24,16 +24,16 @@ public class SelectStage : MonoBehaviour
     {
         stageNumber = selectNumber;
 
-        // stageNumber:1 Easy, 2 Normal, 3 Hard
+        // stageNumber:0 Easy, 1 Normal, 2 Hard
         switch (stageNumber)
         {
-            case 1:
+            case 0:
                 Debug.Log("Easyステージを選択");
                 break;
-            case 2:
+            case 1:
                 Debug.Log("Normalステージを選択");
                 break;
-            case 3:
+            case 2:
                 Debug.Log("Hardステージを選択");
                 break;
         }

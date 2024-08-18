@@ -8,8 +8,8 @@ public class StampSpawner : MonoBehaviour
     public Transform spawnPoint;  // スタンプの生成位置
     private float initialSpawnInterval = 1.0f;  // 最初の生成間隔
     private float spawnInterval;
-    private int totalStamps = 10;
-    private int correctStampCount = 5;
+    private int totalStamps = 30;
+    private int correctStampCount = 20;
     private int currentStampCount = 0;
     private int remainStampCount = 0;
     private int score = 0;
@@ -30,7 +30,7 @@ public class StampSpawner : MonoBehaviour
         }
         else if (SelectStage.stageNumber == 1)
         {
-            initialSpawnInterval = 0.88f;
+            initialSpawnInterval = 0.888f;
         }
         else if (SelectStage.stageNumber == 2)
         {
@@ -45,6 +45,29 @@ public class StampSpawner : MonoBehaviour
         
         stampChecker.SetScore(correctStampCount);
         PrepareStampQueue();
+
+        // 2小節後にスタンプ生成を開始
+        if (SelectStage.stageNumber == 0)
+        {
+            StartCoroutine(StartSpawn(4.0f));
+        }
+        else if (SelectStage.stageNumber == 1)
+        {
+            StartCoroutine(StartSpawn(3.555f));
+        }
+        else if (SelectStage.stageNumber == 2)
+        {
+            StartCoroutine(StartSpawn(3.2f));
+        }
+    }
+
+    IEnumerator StartSpawn(float waitTime)
+    {
+        Debug.Log("スタンプ生成を開始します");
+        yield return new WaitForSeconds(waitTime);
+        Debug.Log("スタンプ生成を開始します");
+        
+        // スタンプ生成のコルーチンを開始
         StartCoroutine(SpawnStamps());
     }
 
@@ -99,10 +122,10 @@ public class StampSpawner : MonoBehaviour
                 Destroy(currentStamp);
             }
 
-            if (currentStampCount == 5)
+            if (currentStampCount == 20)
             {
                 // テンポ調整
-                AudioManager.instance_AudioManager.TempoAdjustBGM(0.2f);
+                AudioManager.instance_AudioManager.TempoAdjustBGM(1.0f);
                 
                 if (SelectStage.stageNumber == 0)
                 {
