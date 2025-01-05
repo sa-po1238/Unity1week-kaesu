@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028331, g: 0.2257133, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -317,9 +317,33 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2495968251128340818}
     m_Modifications:
+    - target: {fileID: 324959943950772371, guid: c95aa743ab0ec0f4ea55d50cee749b78, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 324959943950772371, guid: c95aa743ab0ec0f4ea55d50cee749b78, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 324959943950772371, guid: c95aa743ab0ec0f4ea55d50cee749b78, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 815590275864630059, guid: c95aa743ab0ec0f4ea55d50cee749b78, type: 3}
       propertyPath: m_Name
       value: menuPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 2675254470690253021, guid: c95aa743ab0ec0f4ea55d50cee749b78, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2675254470690253021, guid: c95aa743ab0ec0f4ea55d50cee749b78, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3848845984811417440, guid: c95aa743ab0ec0f4ea55d50cee749b78, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4291451405493608809, guid: c95aa743ab0ec0f4ea55d50cee749b78, type: 3}
       propertyPath: m_Pivot.x
@@ -472,6 +496,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AudioManager
       objectReference: {fileID: 0}
+    - target: {fileID: 4625949007790356776, guid: c96a8abab17aeca45a2abf4f11491ec3, type: 3}
+      propertyPath: BGMSlider
+      value: 
+      objectReference: {fileID: 225950686296009072, guid: 2c48a6b81c1445a4ab15e5fb898044e4, type: 3}
     - target: {fileID: 6646779464067816675, guid: c96a8abab17aeca45a2abf4f11491ec3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

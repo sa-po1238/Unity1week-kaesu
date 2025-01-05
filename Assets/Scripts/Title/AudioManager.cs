@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AudioManager : MonoBehaviour
 {
@@ -19,9 +20,10 @@ public class AudioManager : MonoBehaviour
     }
 
     [SerializeField] private AudioData audioData;
-
     [SerializeField] private AudioSource SESource;
     [SerializeField] private AudioSource BGMSource;
+    [SerializeField] private Slider BGMSlider;
+    [SerializeField] private Slider SESlider;
 
     // Start is called before the first frame update
     void Start()
@@ -30,8 +32,10 @@ public class AudioManager : MonoBehaviour
         this.SESource = tmp[0];
         this.BGMSource = tmp[1];
 
+
         CheckOverlap(this.audioData.SE_Data, "SE_Data");
         CheckOverlap(this.audioData.BGM_Data, "BGM_Data");
+
     }
 
     //オーディオIDが重複していないかを確認する
@@ -116,5 +120,22 @@ public class AudioManager : MonoBehaviour
     public void TempoAdjustBGM(float tempo)
     {
         this.BGMSource.pitch = tempo;
+    }
+
+    public void SetBGMVolume()
+    {
+        if (BGMSource == null)
+        {
+            Debug.LogError("BGMSource が null です！");
+            return;
+        }
+
+        if (BGMSlider == null)
+        {
+            Debug.LogError("BGMSlider が null です！");
+            return;
+        }
+        this.BGMSource.volume = BGMSlider.value;
+        Debug.Log(this.BGMSource.volume);
     }
 }

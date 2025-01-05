@@ -49,6 +49,8 @@ MonoBehaviour:
   audioData: {fileID: 11400000, guid: 68c4e88626779554887095d9dca48ad3, type: 2}
   SESource: {fileID: 5921520938258596297}
   BGMSource: {fileID: 2591277634603896680}
+  BGMSlider: {fileID: 225950686296009072, guid: 2c48a6b81c1445a4ab15e5fb898044e4, type: 3}
+  SESlider: {fileID: 0}
 --- !u!82 &5921520938258596297
 AudioSource:
   m_ObjectHideFlags: 0
@@ -157,7 +159,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
