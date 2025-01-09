@@ -1567,7 +1567,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectButtons: {fileID: 4252157654954898597}
   startButton: {fileID: 1719461072509423974}
-  howtoButton: {fileID: 0}
+  howtoButton: {fileID: 393769702}
   logo: {fileID: 3701427176683818910}
 --- !u!114 &3639585700886956239
 MonoBehaviour:
