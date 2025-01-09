@@ -333,6 +333,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: menuPanel
       objectReference: {fileID: 0}
+    - target: {fileID: 2434366676947766871, guid: c95aa743ab0ec0f4ea55d50cee749b78, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2434366676947766871, guid: c95aa743ab0ec0f4ea55d50cee749b78, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2434366676947766871, guid: c95aa743ab0ec0f4ea55d50cee749b78, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2434366676947766871, guid: c95aa743ab0ec0f4ea55d50cee749b78, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: AudioManager, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 2675254470690253021, guid: c95aa743ab0ec0f4ea55d50cee749b78, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -430,6 +446,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c95aa743ab0ec0f4ea55d50cee749b78, type: 3}
+--- !u!114 &973496335 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2434366676947766871, guid: c95aa743ab0ec0f4ea55d50cee749b78, type: 3}
+  m_PrefabInstance: {fileID: 824842365}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1082575950
 GameObject:
   m_ObjectHideFlags: 0
@@ -499,7 +526,7 @@ PrefabInstance:
     - target: {fileID: 4625949007790356776, guid: c96a8abab17aeca45a2abf4f11491ec3, type: 3}
       propertyPath: BGMSlider
       value: 
-      objectReference: {fileID: 225950686296009072, guid: 2c48a6b81c1445a4ab15e5fb898044e4, type: 3}
+      objectReference: {fileID: 973496335}
     - target: {fileID: 6646779464067816675, guid: c96a8abab17aeca45a2abf4f11491ec3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

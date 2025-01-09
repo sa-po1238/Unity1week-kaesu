@@ -32,10 +32,18 @@ public class AudioManager : MonoBehaviour
         this.SESource = tmp[0];
         this.BGMSource = tmp[1];
 
-
         CheckOverlap(this.audioData.SE_Data, "SE_Data");
         CheckOverlap(this.audioData.BGM_Data, "BGM_Data");
 
+        // BGMSliderのonValueChangedイベントにリスナーを追加
+        if (BGMSlider != null)
+        {
+            BGMSlider.onValueChanged.AddListener(delegate { SetBGMVolume(); });
+        }
+        else
+        {
+            Debug.LogError("BGMSlider が設定されていません。");
+        }
     }
 
     //オーディオIDが重複していないかを確認する
@@ -135,7 +143,8 @@ public class AudioManager : MonoBehaviour
             Debug.LogError("BGMSlider が null です！");
             return;
         }
+        
         this.BGMSource.volume = BGMSlider.value;
-        Debug.Log(this.BGMSource.volume);
+        //Debug.Log(this.BGMSource.volume);
     }
 }
