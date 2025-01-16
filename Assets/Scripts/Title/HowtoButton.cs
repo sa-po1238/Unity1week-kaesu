@@ -42,7 +42,7 @@ public class HowtoButton : MonoBehaviour
             SetActiveHowto(true);
         }
 
-        OnDisable();
+        //OnDisable();
     }
 
     public void OnClickHowtoCloseButton()
@@ -53,14 +53,16 @@ public class HowtoButton : MonoBehaviour
             SetActiveHowto(false);
         }
 
-        OnDisable();
+        //OnDisable();
     }
 
+    /*
     private void OnDisable()
     {
         // オブジェクトが非アクティブになったときにフォーカスを外す
         EventSystem.current.SetSelectedGameObject(null);
     }
+    */
 
     private void SetActiveHowto(bool isActive)
     {
