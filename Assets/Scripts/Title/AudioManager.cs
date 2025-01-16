@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AudioManager : MonoBehaviour
 {
@@ -19,9 +20,10 @@ public class AudioManager : MonoBehaviour
     }
 
     [SerializeField] private AudioData audioData;
-
     [SerializeField] private AudioSource SESource;
     [SerializeField] private AudioSource BGMSource;
+    [SerializeField] private Slider SESlider;
+    [SerializeField] private Slider BGMSlider;
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +34,45 @@ public class AudioManager : MonoBehaviour
 
         CheckOverlap(this.audioData.SE_Data, "SE_Data");
         CheckOverlap(this.audioData.BGM_Data, "BGM_Data");
+
+        SetSESlider();
+        SetBGMSlider();
+
+        // SESliderのonValueChangedイベントにリスナーを追加
+        if (SESlider != null)
+        {
+            SESlider.onValueChanged.AddListener(delegate { SetSEVolume(); });
+
+            // PlayerPrefsから保存された音量を読み込み
+            if (PlayerPrefs.HasKey("SEVolume"))
+            {
+                float savedVolume = PlayerPrefs.GetFloat("SEVolume");
+                SESlider.value = savedVolume;
+                SESource.volume = savedVolume;
+            }
+        }
+        else
+        {
+            Debug.LogError("SESlider が設定されていません。");
+        }
+
+        // BGMSliderのonValueChangedイベントにリスナーを追加
+        if (BGMSlider != null)
+        {
+            BGMSlider.onValueChanged.AddListener(delegate { SetBGMVolume(); });
+
+            // PlayerPrefsから保存された音量を読み込み
+            if (PlayerPrefs.HasKey("BGMVolume"))
+            {
+                float savedVolume = PlayerPrefs.GetFloat("BGMVolume");
+                BGMSlider.value = savedVolume;
+                BGMSource.volume = savedVolume;
+            }
+        }
+        else
+        {
+            Debug.LogError("BGMSlider が設定されていません。");
+        }
     }
 
     //オーディオIDが重複していないかを確認する
@@ -90,6 +131,23 @@ public class AudioManager : MonoBehaviour
         this.SESource.UnPause();
     }
 
+    public void SetSESlider()
+    {
+        SESlider.value = this.SESource.volume;
+    }
+
+    public void SetSEVolume()
+    {
+        if (SESource == null || SESlider == null) return;
+
+        // Sliderの値をSEの音量に反映
+        this.SESource.volume = SESlider.value;
+
+        // PlayerPrefsに音量を保存
+        PlayerPrefs.SetFloat("SEVolume", SESlider.value);
+        PlayerPrefs.Save();
+    }
+
     public void PlayBGM(int id)
     {
         int index = this.ConvertIdIntoIndex(this.audioData.BGM_Data, id);
@@ -117,4 +175,22 @@ public class AudioManager : MonoBehaviour
     {
         this.BGMSource.pitch = tempo;
     }
+
+    public void SetBGMSlider()
+    {
+        BGMSlider.value = this.BGMSource.volume;
+    }
+
+    public void SetBGMVolume()
+    {   
+        if (BGMSource == null || BGMSlider == null) return;
+
+        // Sliderの値をBGMの音量に反映
+        this.BGMSource.volume = BGMSlider.value;
+
+        // PlayerPrefsに音量を保存
+        PlayerPrefs.SetFloat("BGMVolume", BGMSlider.value);
+        PlayerPrefs.Save();
+    }
+
 }
