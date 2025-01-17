@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3641512012779096358}
   - component: {fileID: 8467541521655783230}
   - component: {fileID: 6675612339112703366}
-  - component: {fileID: -6101918339557756490}
+  - component: {fileID: -7247357016369364206}
   m_Layer: 5
   m_Name: Kitayama
   m_TagString: Untagged
@@ -76,7 +76,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!223 &-6101918339557756490
+--- !u!223 &-7247357016369364206
 Canvas:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -97,5 +97,5 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 5
   m_TargetDisplay: 0

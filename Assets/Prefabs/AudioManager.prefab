@@ -305,7 +305,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 7
   m_TargetDisplay: 0
 --- !u!114 &4962957074045166709
 MonoBehaviour:
@@ -534,15 +534,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1703073528526516495, guid: c95aa743ab0ec0f4ea55d50cee749b78, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1790705169658550648, guid: c95aa743ab0ec0f4ea55d50cee749b78, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2555407589111223834, guid: c95aa743ab0ec0f4ea55d50cee749b78, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2739865419341995744, guid: c95aa743ab0ec0f4ea55d50cee749b78, type: 3}
       propertyPath: m_Layer
@@ -566,7 +566,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3314384697782187742, guid: c95aa743ab0ec0f4ea55d50cee749b78, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3725861351653457271, guid: c95aa743ab0ec0f4ea55d50cee749b78, type: 3}
       propertyPath: m_Layer

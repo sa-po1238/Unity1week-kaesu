@@ -926,14 +926,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: AudioManager
       objectReference: {fileID: 0}
-    - target: {fileID: 4977343515659442760, guid: c96a8abab17aeca45a2abf4f11491ec3, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5447875010187917964, guid: c96a8abab17aeca45a2abf4f11491ec3, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6646779464067816675, guid: c96a8abab17aeca45a2abf4f11491ec3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -972,14 +964,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6646779464067816675, guid: c96a8abab17aeca45a2abf4f11491ec3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8085579820051838446, guid: c96a8abab17aeca45a2abf4f11491ec3, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9173432790916799897, guid: c96a8abab17aeca45a2abf4f11491ec3, type: 3}
-      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1168,6 +1152,7 @@ GameObject:
   - component: {fileID: 1736223320}
   - component: {fileID: 1736223322}
   - component: {fileID: 1736223321}
+  - component: {fileID: 1736223323}
   m_Layer: 5
   m_Name: speedUp
   m_TagString: Untagged
@@ -1232,6 +1217,29 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1736223319}
   m_CullTransparentMesh: 1
+--- !u!223 &1736223323
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1736223319}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 1
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_UpdateRectTransformForStandalone: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 6
+  m_TargetDisplay: 0
 --- !u!1 &1841105046
 GameObject:
   m_ObjectHideFlags: 0

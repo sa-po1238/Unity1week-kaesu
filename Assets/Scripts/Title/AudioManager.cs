@@ -112,7 +112,9 @@ public class AudioManager : MonoBehaviour
     {
         int index = this.ConvertIdIntoIndex(this.audioData.SE_Data, id);
         this.SESource.clip = this.audioData.SE_Data[index].clip;
-        this.SESource.volume = this.audioData.SE_Data[index].volume;
+        // Sliderの値を優先して音量を設定
+        this.SESource.volume = SESlider != null ? SESlider.value : this.audioData.SE_Data[index].volume;
+        
         this.SESource.Play();
     }
 
