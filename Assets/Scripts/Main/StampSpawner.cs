@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 public class StampSpawner : MonoBehaviour
 {
@@ -23,8 +22,13 @@ public class StampSpawner : MonoBehaviour
     private GameManager gameManager;
 
     [SerializeField] GameObject speedUpText;
+    [SerializeField] GameObject gaugePrefab;    // ゲージのプレハブ
 
-    private float tempo = 0.2f;
+    private GameObject currentGauge;    // 現在表示されているゲージ
+    private Image gaugeFillImage;       // ゲージのFill Image
+
+    private float gaugeTimer = 0.0f;
+    
 
     void Start()
     {
@@ -40,7 +44,6 @@ public class StampSpawner : MonoBehaviour
         {
             initialSpawnInterval = 0.80f;
         }
-        Debug.Log(initialSpawnInterval.ToString());
         spawnInterval = initialSpawnInterval;
         remainStampCount = totalStamps;
 
@@ -62,6 +65,25 @@ public class StampSpawner : MonoBehaviour
         else if (SelectStage.stageNumber == 2)
         {
             StartCoroutine(StartSpawn(3.2f));
+        }
+    }
+
+    void Update()
+    {
+        // ゲージの更新
+        if (currentGauge != null && gaugeFillImage != null)
+        {
+            gaugeTimer += Time.deltaTime;
+            
+            float fillAmount = 1f - (gaugeTimer / spawnInterval);
+            gaugeFillImage.fillAmount = Mathf.Clamp01(fillAmount);
+
+            if (gaugeTimer >= spawnInterval)
+            {
+                gaugeTimer = 0.0f;
+                Destroy(currentGauge);
+                currentGauge = null;
+            }
         }
     }
 
@@ -134,6 +156,13 @@ public class StampSpawner : MonoBehaviour
             if (currentStamp != null)
             {
                 Destroy(currentStamp);
+                currentStamp = null;
+            }
+
+            if (currentGauge != null)
+            {
+                Destroy(currentGauge);
+                currentGauge = null;
             }
 
             if (currentStampCount == 20)
@@ -184,7 +213,17 @@ public class StampSpawner : MonoBehaviour
 
         // StampChecker に現在のスタンプを設定
         stampChecker.SetCurrentStamp(currentStamp);
-        Debug.Log("スタンプを生成しました: " + currentStamp.name);
+        
+
+        // 円形のゲージを生成し、スタンプの子オブジェクトとして設定
+        currentGauge = Instantiate(gaugePrefab, currentStamp.transform.position, Quaternion.Euler(0, 180, 0), currentStamp.transform);
+        gaugeFillImage = currentGauge.GetComponentInChildren<Image>();
+        if (gaugeFillImage != null)
+        {
+            gaugeFillImage.fillAmount = 1.0f;   // ゲージをフルに設定
+        }
+
+        gaugeTimer = 0.0f;
 
         AudioManager.instance_AudioManager.PlaySE(2);
     }
