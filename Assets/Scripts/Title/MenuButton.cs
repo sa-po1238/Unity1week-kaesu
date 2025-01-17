@@ -20,7 +20,7 @@ public class MenuButton : MonoBehaviour
 
     void Start()
     {
-        
+
     }
 
     void Update()

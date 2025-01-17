@@ -6,6 +6,8 @@ public class StartButton : MonoBehaviour
 {
     [SerializeField] GameObject selectButtons;
     [SerializeField] GameObject startButton;
+    [SerializeField] GameObject howtoButton;
+    [SerializeField] GameObject finishButton;
     [SerializeField] GameObject logo;
 
     // Start is called before the first frame update
@@ -25,6 +27,8 @@ public class StartButton : MonoBehaviour
     {
         AudioManager.instance_AudioManager.PlaySE(0);
         startButton.SetActive(false);
+        howtoButton.SetActive(false);
+        finishButton.SetActive(false);
         logo.SetActive(false);
         selectButtons.SetActive(true);
     }
